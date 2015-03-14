@@ -50,7 +50,7 @@
 		[brain setOperand:[display.text doubleValue]];
 		userIsInMiddleOfTypingNumber = false;
 	}
-	NSString *operation = [(UIButton *)sender currentTitle];
+    NSString *operation = [(UIButton *)sender currentTitle]; 
 	double result = [brain performOperation:operation];
 	[display setText:[NSString stringWithFormat:@"%g",result]];
 }

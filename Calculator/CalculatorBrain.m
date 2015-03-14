@@ -10,10 +10,12 @@
 
 @implementation CalculatorBrain
 
+// this method is uneeded since it does the exact same thing that the superclass's implementation does.
 -(instancetype)init{
 	self = [super init];
 	return self;
 }
+
 
 -(double)performOperation:(NSString *) operation{
 	if([waitingOperation isEqualToString:@"÷"]){
