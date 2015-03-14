@@ -10,37 +10,34 @@
 
 @implementation CalculatorBrain
 
-// this method is uneeded since it does the exact same thing that the superclass's implementation does.
--(instancetype)init{
-	self = [super init];
-	return self;
-}
-
-
--(double)performOperation:(NSString *) operation{
-	if([waitingOperation isEqualToString:@"÷"]){
-		//check for dividing by zero
-		if(operand){
-			operand = waitingOperand/operand;
+-(double)performOperation:(NSString *) newOperation{
+	
+	if(waitingOperation == OperationAdd){
+		_operand = waitingOperand + _operand;
+	}else if(waitingOperation == OperationSubtract){
+		_operand = waitingOperand - _operand;
+	}else if(waitingOperation == OperationMultiply){
+		_operand = waitingOperand * _operand;
+	}else if(waitingOperation == OperationDivide){
+		if(_operand){ //check for dividing by zero
+			_operand = waitingOperand/_operand;
 		}
-	}else if([waitingOperation isEqualToString:@"×"]){
-		operand = waitingOperand * operand;
-	}
-	else if([waitingOperation isEqualToString:@"+"]){
-		operand = waitingOperand + operand;
-		
-	}
-	else if([waitingOperation isEqualToString:@"−"]){
-		operand = waitingOperand - operand;
 	}
 	
-	waitingOperation = operation;
-	waitingOperand = operand;
-	return operand;
-}
-
--(void)setOperand:(double) op{
-	operand = op;
+	if([newOperation isEqualToString:@"+"]){
+		waitingOperation = OperationAdd;
+	}else if([newOperation isEqualToString:@"−"]){
+		waitingOperation = OperationSubtract;
+	}else if([newOperation isEqualToString:@"×"]){
+		waitingOperation = OperationMultiply;
+	}else if([newOperation isEqualToString:@"÷"]){
+		waitingOperation = OperationDivide;
+	}else{
+		waitingOperation = OperationNone;
+	}
+	
+	waitingOperand = _operand;
+	return _operand;
 }
 
 @end

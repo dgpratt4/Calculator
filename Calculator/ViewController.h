@@ -21,9 +21,5 @@
 
 }
 
-// you don't have to declare these since they're defined in the protocols above
--(void)digitPressed:(id)sender;
--(void)operationPressed:(id)sender;
-
 @end
 

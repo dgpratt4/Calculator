@@ -14,12 +14,7 @@
 	self = [super initWithFrame:frame];
 	
 	if(self){
-		[self.titleLabel setFont: [UIFont systemFontOfSize:30]];
-		[self.titleLabel setTextColor:[UIColor whiteColor]];
-		[self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-		[self setTitle:text forState: UIControlStateNormal];
-		self.backgroundColor = [UIColor colorWithRed:0 green:0.6 blue:0.95 alpha:1];
-		self.layer.cornerRadius = 3;
+		
 		
 	}
 	return self;

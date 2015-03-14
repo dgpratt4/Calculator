@@ -24,19 +24,18 @@
 	[display setText:@"0"];
 	[self.view addSubview:display];
 	
-	digitPad = [[DigitPad alloc] initWithFrame:CGRectMake(0, display.frame.size.height, self.view.frame.size.width - self.view.frame.size.width/4, self.view.frame.size.height - display.frame.size.height - 1)];
+	digitPad = [[DigitPad alloc] initWithFrame:CGRectMake(0, display.frame.size.height, self.view.frame.size.width - self.view.frame.size.width/4, self.view.frame.size.height - display.frame.size.height)];
 	digitPad.delegate = self;
 	[self.view addSubview:digitPad];
 	
-	operationPad = [[OperationPad alloc] initWithFrame:CGRectMake(digitPad.frame.size.width, display.frame.size.height, self.view.frame.size.width/4, self.view.frame.size.height - display.frame.size.height - 1)];
+	operationPad = [[OperationPad alloc] initWithFrame:CGRectMake(digitPad.frame.size.width, display.frame.size.height, self.view.frame.size.width/4, self.view.frame.size.height - display.frame.size.height)];
 	operationPad.delegate = self;
 	[self.view addSubview:operationPad];
 	
 	brain = [[CalculatorBrain alloc] init];
 }
 
--(void)digitPressed:(id)sender{
-	NSString *digit = [(UIButton *)sender currentTitle];
+-(void)digitPressed:(NSString*)digit{
 	if(userIsInMiddleOfTypingNumber){
 		[display setText:[display.text stringByAppendingString:digit]];
 	}else{
@@ -45,12 +44,11 @@
 	}
 }
 
--(void)operationPressed:(id)sender{
+-(void)operationPressed:(NSString*)operation{
 	if(userIsInMiddleOfTypingNumber){
 		[brain setOperand:[display.text doubleValue]];
 		userIsInMiddleOfTypingNumber = false;
 	}
-    NSString *operation = [(UIButton *)sender currentTitle]; 
 	double result = [brain performOperation:operation];
 	[display setText:[NSString stringWithFormat:@"%g",result]];
 }
