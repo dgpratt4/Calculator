@@ -28,38 +28,35 @@
 }
 
 -(void)setupDigitButtons{
-	UIButton *button;
 	UIColor *color = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
 
-	
-	CGRect rect = CGRectMake(1,1,self.frame.size.width - 2,self.frame.size.height/numOfButtons - 2);
-	// ^ this is dificult to understand, I might consider using autolayout
 	NSString *title = @"÷";
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	CGRect rect = CGRectMake(0,0,self.frame.size.width,self.frame.size.height/numOfButtons);
+	UIButton *button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
 	
 	title = @"×";
-	rect = CGRectMake(1, self.frame.size.height/numOfButtons + 1,self.frame.size.width - 2,self.frame.size.height/numOfButtons - 2);
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	rect = CGRectMake(0, self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
+	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview: button];
 	
 	title = @"−";
-	rect = CGRectMake(1,2 * self.frame.size.height/numOfButtons + 1,self.frame.size.width - 2,self.frame.size.height/numOfButtons - 2);
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	rect = CGRectMake(0,2 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
+	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview: button];
 	
 	title = @"+";
-	rect = CGRectMake(1, 3 * self.frame.size.height/numOfButtons + 1,self.frame.size.width - 2,self.frame.size.height/numOfButtons - 2);
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	rect = CGRectMake(0, 3 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
+	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview: button];
 	
 	title = @"=";
-	rect = CGRectMake(1, 4 * self.frame.size.height/numOfButtons + 1,self.frame.size.width - 2,self.frame.size.height/numOfButtons - 2);
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	rect = CGRectMake(0, 4 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
+	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview: button];
 }

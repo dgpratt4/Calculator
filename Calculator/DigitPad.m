@@ -25,21 +25,25 @@
 }
 
 -(void)setupDigitButtons{
-	UIButton *button;
-	UIColor *color= [UIColor colorWithRed:0 green:0.6 blue:0.95 alpha:1];
+	UIColor *color= [UIColor colorWithRed:0.1 green:0.65 blue:0.95 alpha:1];
 	
-	CGRect rect = CGRectMake(1, 3 * self.frame.size.height/4 + 1, self.frame.size.width -2, self.frame.size.height/4 -2);
-	// ^ this is dificult to understand, I might consider using autolayout
+	//Setup 0
 	NSString *title = @"0";
-	button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+	CGRect rect = CGRectMake(0, 3 * self.frame.size.height/4, self.frame.size.width, self.frame.size.height/4);
+	UIButton *button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
 	
+	//Setup 1 through 9
 	for(int i = 1; i <= 9; i++){
-		rect = CGRectMake(((i - 1)%3) * self.frame.size.width/3 + 1, (2-(i-1)/3) * self.frame.size.height/4 + 1, self.frame.size.width/3 -2, self.frame.size.height/4 -2);
-         // ^ this is dificult to understand, I might consider using autolayout
 		title = [NSString stringWithFormat:@"%i", i];
-		button = [UIButton roundedButtonWithFrame:rect text:title backgroundColor:color];
+
+		int floorI = (i - 1); //Built to default i to 0 instead of 1
+		int slotX = (floorI % 3); //Every i slotX shifts over a column and resets to 0 every 3i
+		int slotY = (2 - floorI / 3); // "2 -" is to reverse order. Every 3i moves up a row
+		rect = CGRectMake(slotX * self.frame.size.width/3, slotY * self.frame.size.height/4, self.frame.size.width/3, self.frame.size.height/4);
+		
+		button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
 		[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview: button];
 	}

@@ -18,7 +18,7 @@
 	[super viewDidLoad];
 	
 	display = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.view.frame.size.width - 40, self.view.frame.size.height/5)];
-	[display setTextColor:[UIColor blackColor]];
+	[display setTextColor:UIColor.blackColor];
 	[display setFont:[UIFont systemFontOfSize:70]];
 	[display setTextAlignment:NSTextAlignmentRight];
 	[display setText:@"0"];

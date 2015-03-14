@@ -10,8 +10,9 @@
 
 @implementation UIButton (RoudedColored)
 
-+(UIButton*)roundedButtonWithFrame:(CGRect)frame text:(NSString*)text backgroundColor:(UIColor*)color{
-	UIButton *button = [[UIButton alloc] initWithFrame:frame];
++(UIButton*)roundedButtonInsideFrame:(CGRect)frame text:(NSString*)text backgroundColor:(UIColor*)color{
+
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(frame.origin.x + 1, frame.origin.y + 1, frame.size.width - 2, frame.size.height - 2)];
 	[button.titleLabel setFont: [UIFont systemFontOfSize:30]];
 	[button.titleLabel setTextColor:[UIColor whiteColor]];
 	[button.titleLabel setTextAlignment:NSTextAlignmentCenter];

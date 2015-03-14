@@ -10,6 +10,6 @@
 
 @interface UIButton (RoudedColored)
 
-+(UIButton*)roundedButtonWithFrame:(CGRect)frame text:(NSString*)text backgroundColor:(UIColor*)color;
++(UIButton*)roundedButtonInsideFrame:(CGRect)frame text:(NSString*)text backgroundColor:(UIColor*)color;
 
 @end

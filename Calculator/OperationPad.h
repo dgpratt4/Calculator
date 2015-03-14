@@ -15,9 +15,7 @@
 @end
 
 @interface OperationPad : UIView{
-	
 	int numOfButtons;
-	
 }
 
 @property (nonatomic, assign) id <OperationPadProtocal> delegate;
