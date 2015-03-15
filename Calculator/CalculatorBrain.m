@@ -10,7 +10,7 @@
 
 @implementation CalculatorBrain
 
--(double)performOperation:(int) newOperation{
+-(double)performOperation:(Operation) newOperation{
 	
 	if(waitingOperation == OperationAdd){
 		_operand = waitingOperand + _operand;
@@ -27,6 +27,20 @@
 	waitingOperation = newOperation;
 	waitingOperand = _operand;
 	return _operand;
+}
+
+-(Operation)operationFromString:(NSString *) operation{
+	if([operation isEqualToString:@"+"]){
+		return OperationAdd;
+	}else if([operation isEqualToString:@"−"]){
+		return OperationSubtract;
+	}else if([operation isEqualToString:@"×"]){
+		return OperationMultiply;
+	}else if([operation isEqualToString:@"÷"]){
+		return OperationDivide;
+	}else{
+		return OperationNone;
+	}
 }
 
 @end

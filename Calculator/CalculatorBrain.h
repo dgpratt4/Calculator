@@ -21,7 +21,9 @@ typedef NS_ENUM(NSInteger, Operation) {
 	double waitingOperand;
 }
 
--(double)performOperation:(int) operation;
+-(double)performOperation:(Operation) operation;
+-(Operation)operationFromString:(NSString *) operation;
+
 
 @property (nonatomic, assign) double operand;
 

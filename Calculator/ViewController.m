@@ -49,22 +49,9 @@
 		[brain setOperand:[display.text doubleValue]];
 		userIsInMiddleOfTypingNumber = false;
 	}
-	double result = [brain performOperation:[self operandFromString:operationString]];
+	Operation op = [brain operationFromString:operationString];
+	double result = [brain performOperation:op];
 	[display setText:[NSString stringWithFormat:@"%g",result]];
-}
-
--(int)operandFromString:(NSString *) operation{
-	if([operation isEqualToString:@"+"]){
-		return OperationAdd;
-	}else if([operation isEqualToString:@"−"]){
-		return OperationSubtract;
-	}else if([operation isEqualToString:@"×"]){
-		return OperationMultiply;
-	}else if([operation isEqualToString:@"÷"]){
-		return OperationDivide;
-	}else{
-		return OperationNone;
-	}
 }
 
 - (void)didReceiveMemoryWarning {
