@@ -17,7 +17,6 @@
 	UILabel *display;
 	DigitPad *digitPad;
 	OperationPad *operationPad;
-	BOOL userIsInMiddleOfTypingNumber;
 
 }
 

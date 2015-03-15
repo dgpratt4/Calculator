@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CalculatorBrain.h"
 
 @protocol OperationPadProtocal <NSObject>
 
--(void)operationPressed:(NSString*)operationString;
+-(void)operationPressed:(Operation)operation;
 
 @end
 

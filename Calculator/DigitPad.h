@@ -10,7 +10,7 @@
 
 @protocol DigitPadProtocal <NSObject>
 
--(void)digitPressed:(NSString*)digit;
+-(void)digitPressed:(int)digit;
 
 @end
 

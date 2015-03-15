@@ -10,37 +10,27 @@
 
 @implementation CalculatorBrain
 
--(double)performOperation:(Operation) newOperation{
-	
-	if(waitingOperation == OperationAdd){
-		_operand = waitingOperand + _operand;
-	}else if(waitingOperation == OperationSubtract){
-		_operand = waitingOperand - _operand;
-	}else if(waitingOperation == OperationMultiply){
-		_operand = waitingOperand * _operand;
-	}else if(waitingOperation == OperationDivide){
-		if(_operand){ //check for dividing by zero
-			_operand = waitingOperand/_operand;
-		}
-	}
+- (double)performOperation:(Operation)newOperation {
+    
+    switch (waitingOperation) {
+        case OperationAdd:
+            _operand = waitingOperand + _operand; break;
+        case OperationSubtract:
+            _operand = waitingOperand - _operand; break;
+        case OperationMultiply:
+            _operand = waitingOperand * _operand; break;
+        case OperationDivide:
+            if(_operand){ //check for dividing by zero
+                _operand = waitingOperand/_operand;
+            }
+            break;
+        case OperationNone:
+            break;
+    }
 	
 	waitingOperation = newOperation;
 	waitingOperand = _operand;
-	return _operand;
-}
-
--(Operation)operationFromString:(NSString *) operation{
-	if([operation isEqualToString:@"+"]){
-		return OperationAdd;
-	}else if([operation isEqualToString:@"−"]){
-		return OperationSubtract;
-	}else if([operation isEqualToString:@"×"]){
-		return OperationMultiply;
-	}else if([operation isEqualToString:@"÷"]){
-		return OperationDivide;
-	}else{
-		return OperationNone;
-	}
+    return waitingOperation ? 0 : _operand;
 }
 
 @end

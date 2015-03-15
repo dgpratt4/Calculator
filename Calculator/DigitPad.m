@@ -21,7 +21,8 @@
 
 -(void)buttonPressed:(UIButton*)sender{
 	NSString* digit = [[sender titleLabel] text];
-	[_delegate digitPressed:digit];
+    int digitValue = [digit intValue];
+	[_delegate digitPressed:digitValue];
 }
 
 -(void)setupDigitButtons{

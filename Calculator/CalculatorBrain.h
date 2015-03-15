@@ -17,13 +17,11 @@ typedef NS_ENUM(NSInteger, Operation) {
 };
 
 @interface CalculatorBrain : NSObject{
-	enum Operation waitingOperation;
+    Operation waitingOperation;
 	double waitingOperand;
 }
 
--(double)performOperation:(Operation) operation;
--(Operation)operationFromString:(NSString *) operation;
-
+- (double)performOperation:(Operation)operation;
 
 @property (nonatomic, assign) double operand;
 

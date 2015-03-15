@@ -20,43 +20,38 @@
 	return self;
 }
 
--(void)buttonPressed:(UIButton*)sender{
-	NSString* operation = [[sender titleLabel] text];
-	[_delegate operationPressed:operation];
+-(void)addButtonPressed:(UIButton*)sender{
+	[_delegate operationPressed:OperationAdd];
+}
+
+-(void)substractButtonPressed:(UIButton*)sender{
+    [_delegate operationPressed:OperationSubtract];
+}
+
+-(void)multButtonPressed:(UIButton*)sender{
+    [_delegate operationPressed:OperationMultiply];
+}
+
+-(void)divideButtonPressed:(UIButton*)sender{
+    [_delegate operationPressed:OperationDivide];
+}
+
+-(void)equalsButtonPressed:(UIButton*)sender{
+    [_delegate operationPressed:OperationNone];
 }
 
 -(void)setupOperationButtons{
 	int numOfButtons = 5;
 	UIColor *color = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
 
-	NSString *title = @"÷";
-	CGRect rect = CGRectMake(0,0,self.frame.size.width,self.frame.size.height/numOfButtons);
-	UIButton *button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
-	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:button];
-	
-	title = @"×";
-	rect = CGRectMake(0, self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
-	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
-	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview: button];
-	
-	title = @"−";
-	rect = CGRectMake(0,2 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
-	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
-	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview: button];
-	
-	title = @"+";
-	rect = CGRectMake(0, 3 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
-	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
-	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview: button];
-	
-	title = @"=";
-	rect = CGRectMake(0, 4 * self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
-	button = [UIButton roundedButtonInsideFrame:rect text:title backgroundColor:color];
-	[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview: button];
+    NSArray *titles = @[@"÷",@"×",@"−",@"+",@"="];
+    NSArray *selectors = @[@"divideButtonPressed:",@"multButtonPressed:",@"substractButtonPressed:",@"addButtonPressed:",@"equalsButtonPressed:"];
+    for (int i=0; i<numOfButtons; i++) {
+        CGRect rect = CGRectMake(0, i*self.frame.size.height/numOfButtons,self.frame.size.width,self.frame.size.height/numOfButtons);
+        UIButton *button = [UIButton roundedButtonInsideFrame:rect text:titles[i] backgroundColor:color];
+        SEL selector = NSSelectorFromString(selectors[i]);
+        [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview: button];
+    }
 }
 @end

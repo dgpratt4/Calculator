@@ -35,21 +35,16 @@
 	brain = [[CalculatorBrain alloc] init];
 }
 
--(void)digitPressed:(NSString*)digit{
-	if(userIsInMiddleOfTypingNumber){
-		[display setText:[display.text stringByAppendingString:digit]];
-	}else{
-		[display setText:digit];
-		userIsInMiddleOfTypingNumber = true;
-	}
+-(void)digitPressed:(int)digit{
+    
+    double newValue = [display.text doubleValue] * 10 + digit;
+    [display setText:[NSString stringWithFormat:@"%.0f",newValue]];
+
 }
 
--(void)operationPressed:(NSString*)operationString{
-	if(userIsInMiddleOfTypingNumber){
-		[brain setOperand:[display.text doubleValue]];
-		userIsInMiddleOfTypingNumber = false;
-	}
-	Operation op = [brain operationFromString:operationString];
+-(void)operationPressed:(Operation)op{
+
+    [brain setOperand:[display.text doubleValue]];
 	double result = [brain performOperation:op];
 	[display setText:[NSString stringWithFormat:@"%g",result]];
 }
