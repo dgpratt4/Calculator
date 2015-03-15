@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ENUM(NSInteger, Operation) {
+typedef NS_ENUM(NSInteger, Operation) {
     OperationNone, // for when waitingOperation isn't specified
     OperationAdd ,
     OperationSubtract,
@@ -21,7 +21,7 @@ NS_ENUM(NSInteger, Operation) {
 	double waitingOperand;
 }
 
--(double)performOperation:(NSString*) operation;
+-(double)performOperation:(int) operation;
 
 @property (nonatomic, assign) double operand;
 

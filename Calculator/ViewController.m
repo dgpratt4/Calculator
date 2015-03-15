@@ -24,7 +24,7 @@
 	[display setText:@"0"];
 	[self.view addSubview:display];
 	
-	digitPad = [[DigitPad alloc] initWithFrame:CGRectMake(0, display.frame.size.height, self.view.frame.size.width - self.view.frame.size.width/4, self.view.frame.size.height - display.frame.size.height)];
+	digitPad = [[DigitPad alloc] initWithFrame:CGRectMake(0, display.frame.size.height, 3.0/4.0 * self.view.frame.size.width, self.view.frame.size.height - display.frame.size.height)];
 	digitPad.delegate = self;
 	[self.view addSubview:digitPad];
 	
@@ -44,13 +44,27 @@
 	}
 }
 
--(void)operationPressed:(NSString*)operation{
+-(void)operationPressed:(NSString*)operationString{
 	if(userIsInMiddleOfTypingNumber){
 		[brain setOperand:[display.text doubleValue]];
 		userIsInMiddleOfTypingNumber = false;
 	}
-	double result = [brain performOperation:operation];
+	double result = [brain performOperation:[self operandFromString:operationString]];
 	[display setText:[NSString stringWithFormat:@"%g",result]];
+}
+
+-(int)operandFromString:(NSString *) operation{
+	if([operation isEqualToString:@"+"]){
+		return OperationAdd;
+	}else if([operation isEqualToString:@"−"]){
+		return OperationSubtract;
+	}else if([operation isEqualToString:@"×"]){
+		return OperationMultiply;
+	}else if([operation isEqualToString:@"÷"]){
+		return OperationDivide;
+	}else{
+		return OperationNone;
+	}
 }
 
 - (void)didReceiveMemoryWarning {

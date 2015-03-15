@@ -14,10 +14,8 @@
 -(instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	
-	numOfButtons = 5;
-	
 	if(self){
-		[self setupDigitButtons];
+		[self setupOperationButtons];
 	}
 	return self;
 }
@@ -27,7 +25,8 @@
 	[_delegate operationPressed:operation];
 }
 
--(void)setupDigitButtons{
+-(void)setupOperationButtons{
+	int numOfButtons = 5;
 	UIColor *color = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
 
 	NSString *title = @"÷";

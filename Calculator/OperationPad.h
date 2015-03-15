@@ -10,13 +10,11 @@
 
 @protocol OperationPadProtocal <NSObject>
 
--(void)operationPressed:(id)sender;
+-(void)operationPressed:(NSString*)operationString;
 
 @end
 
-@interface OperationPad : UIView{
-	int numOfButtons;
-}
+@interface OperationPad : UIView
 
 @property (nonatomic, assign) id <OperationPadProtocal> delegate;
 
